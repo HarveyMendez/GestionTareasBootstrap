@@ -1,0 +1,33 @@
+﻿@model Usuario
+
+<link href="~/css/CrearUsuario.css" rel="stylesheet" />
+
+<div class="modal-dialog">
+    <div class="modal-content" style="background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <div class="modal-header" style="background-color: #007bff; color: #fff; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h5 class="modal-title">Editar Perfil</h5>
+        </div>
+        <div class="modal-body">
+            <form asp-controller="User" asp-action="ActualizarUsuario" method="post" class="was-validated">
+                <input asp-for="Id_Usuario" type="hidden" />
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label">Nombre</label>
+                    <input asp-for="Nombre" type="text" class="form-control" placeholder="Nombre del usuario" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese el nombre del usuario.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" placeholder="Correo electrónico" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese un correo electrónico válido.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
