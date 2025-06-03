@@ -1,0 +1,226 @@
+﻿ @using Proyecto_1_C14644_C17853.Utility
+ @model TableroViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Tareas</title>
+    <!-- Bootstrap 5.3.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MDB UI Kit -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet">
+    <link href="/css/Main.css" rel="stylesheet">
+    <script src="/js/Main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <div id="alertBox" class="alert alert-success" style="display:none">
+            <strong id="alertMessage">Success!</strong>
+        </div>
+        <div id="alertBoxDanger" class="alert alert-danger" style="display:none">
+            <strong id="alertMessageDanger">Danger!</strong>
+        </div>
+    </div>
+    <h1>Tabla de Tareas</h1>
+    <!-- Botón para abrir el modal -->
+    <button id="openModalBtn" class="btn btn-primary d-block mx-auto mb-4" onclick="cargarUsuarios()">Crear Nueva Tarea</button>
+    <div class="d-flex justify-content-center" style="display: none;">
+        <div id="spinner" class="spinner-border m-5" role="status" style="display:none">
+        <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <!-- Modal de Creación -->
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Crear Nueva Tarea</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="Main" asp-action="CrearTarea" method="post" id="createTaskForm" class="was-validated">
+                        <div class="mb-3">
+                            <label for="Title" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="Title" name="Tarea.Titulo" placeholder="Título" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingrese el título de la tarea.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Description" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="Description" name="Tarea.Descripcion" placeholder="Descripción"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DueDate" class="form-label">Fecha de Vencimiento</label>
+                            <input type="date" class="form-control" id="DueDate" name="Tarea.FechaVencimiento" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingrese la fecha de vencimiento.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Priority" class="form-label">Prioridad</label>
+                            <select class="form-select" id="Priority" name="Tarea.Prioridad" required>
+                                <option value="Baja">Baja</option>
+                                <option value="Media">Media</option>
+                                <option value="Alta">Alta</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Por favor, seleccione la prioridad.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="AssignedTo" class="form-label">Asignado a</label>
+                            <div id="AssignedTo" class="form-check">
+                                <!-- Los usuarios se cargarán dinámicamente -->
+                            </div>
+                        </div>
+                        <!-- Campo oculto para el estado -->
+                        <input type="hidden" name="Tarea.Estado" value="@Utility.Pendiente" />
+                        <!-- Campo oculto para el tablero -->
+                        <input type="hidden" name="Tablero.Tareas" value="@Html.Raw(Json.Serialize(Model.Tablero.Tareas))" />
+                        <button type="submit" class="btn btn-primary">Crear Tarea</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTaskModalLabel">Editar Tarea</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTaskForm" class="was-validated">
+                        <input type="hidden" id="editTaskId" name="Tarea.Id_Tarea" />
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="editTitle" name="Tarea.Titulo" placeholder="Título" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingrese el título de la tarea.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="editDescription" name="Tarea.Descripcion" placeholder="Descripción"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDueDate" class="form-label">Fecha de Vencimiento</label>
+                            <input type="date" class="form-control" id="editDueDate" name="Tarea.FechaVencimiento" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingrese la fecha de vencimiento.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPriority" class="form-label">Prioridad</label>
+                            <select class="form-select" id="editPriority" name="Tarea.Prioridad" required>
+                                <option value="Baja">Baja</option>
+                                <option value="Media">Media</option>
+                                <option value="Alta">Alta</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Por favor, seleccione la prioridad.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editAssignedTo" class="form-label">Asignado a</label>
+                            <div id="editAssignedTo" class="form-check"></div>
+                        </div>
+                        <input type="hidden" id="editEstado" name="Tarea.Estado" />
+                        <div id="editTaskError" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">Actualizar Tarea</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalConfirmacionLabel">Confirmar Eliminación</h5>
+                    <button id="cerrarConIcono" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar esta tarea?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cerrarModalConfirmar" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tablero Kanban -->
+    <div class="kanban-board">
+        <div class="column" id="@Utility.Pendiente">
+            <h2>Pendiente</h2>
+            @foreach (var tarea in Model.Tablero.Tareas.Where(c => c.Estado == Utility.Pendiente))
+            {
+                <div class="card" draggable="true" data-id="@tarea.Id_Tarea">
+                    <strong>@tarea.Titulo</strong><br />
+                    <small>@tarea.Descripcion</small><br />
+                    <small>Vence: @tarea.FechaVencimiento.ToShortDateString()</small><br />
+                    <small class="priority-@tarea.Prioridad.ToLower()">Prioridad: @tarea.Prioridad</small><br />
+                    @foreach (var usuario in tarea.UsuariosAsignados)
+                    {
+                        <small>Asignado a: @usuario.Nombre</small>
+                    }
+                    <button onclick='editarTarea(@Html.Raw(Json.Serialize(tarea)))'>Editar</button>
+                    <button onclick="abrirModalConfirmacion(@tarea.Id_Tarea)">Eliminar</button>
+                </div>
+            }
+        </div>
+        <div class="column" id="@Utility.EnProgreso">
+            <h2>En Progreso</h2>
+            @foreach (var tarea in Model.Tablero.Tareas.Where(c => c.Estado == Utility.EnProgreso))
+            {
+                <div class="card" draggable="true" data-id="@tarea.Id_Tarea">
+                    <strong>@tarea.Titulo</strong><br />
+                    <small>@tarea.Descripcion</small><br />
+                    <small>Vence: @tarea.FechaVencimiento.ToShortDateString()</small><br />
+                    <small class="priority-@tarea.Prioridad.ToLower()">Prioridad: @tarea.Prioridad</small><br />
+                    @foreach (var usuario in tarea.UsuariosAsignados)
+                    {
+                        <small>Asignado a: @usuario.Nombre</small>
+                    }
+                    <button onclick='editarTarea(@Html.Raw(Json.Serialize(tarea)))'>Editar</button>
+                    <button onclick="abrirModalConfirmacion(@tarea.Id_Tarea)">Eliminar</button>
+                </div>
+            }
+        </div>
+        <div class="column" id="@Utility.Finalizado">
+            <h2>Finalizado</h2>
+            @foreach (var tarea in Model.Tablero.Tareas.Where(c => c.Estado == Utility.Finalizado))
+            {
+                <div class="card" draggable="true" data-id="@tarea.Id_Tarea">
+                    <strong>@tarea.Titulo</strong><br />
+                    <small>@tarea.Descripcion</small><br />
+                    <small>Vence: @tarea.FechaVencimiento.ToShortDateString()</small><br />
+                    <small class="priority-@tarea.Prioridad.ToLower()">Prioridad: @tarea.Prioridad</small><br />
+                    @foreach (var usuario in tarea.UsuariosAsignados)
+                    {
+                        <small>Asignado a: @usuario.Nombre</small>
+                    }
+                    <button onclick='editarTarea(@Html.Raw(Json.Serialize(tarea)))'>Editar</button>
+                    <button onclick="abrirModalConfirmacion(@tarea.Id_Tarea)">Eliminar</button>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- Bootstrap JS y MDB -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+</body>
+</html>
