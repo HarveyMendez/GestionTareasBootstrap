@@ -1,0 +1,138 @@
+﻿/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; /* Fondo negro mate */
+    color: #ffffff; /* Texto blanco */
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+    color: #ffffff; /* Título blanco */
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.75rem; /* Título más grande */
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1000px; /* Ancho más amplio */
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/* Tarjeta de inicio de sesión */
+.card {
+    background-color: #2a2a2a; /* Fondo oscuro para la tarjeta */
+    border: none; /* Sin borde */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+}
+
+.card-body {
+    padding: 40px; /* Espaciado interno más amplio */
+}
+
+/* Alertas de error */
+.alert-danger {
+    background-color: #ff4d4d; /* Rojo vibrante */
+    border: none; /* Sin borde */
+    border-radius: 8px;
+    color: white; /* Texto blanco */
+    font-size: 1rem; /* Texto más grande */
+    margin-bottom: 20px;
+}
+
+    .alert-danger svg {
+        fill: white; /* Icono blanco */
+    }
+
+    .alert-danger .btn-close {
+        color: white; /* Botón de cierre blanco */
+    }
+
+/* Campos de entrada */
+.form-floating {
+    position: relative;
+    margin-bottom: 20px; /* Espaciado entre campos más amplio */
+}
+
+    .form-floating input {
+        background-color: #3a3a3a; /* Fondo oscuro para campos */
+        border: 1px solid #555; /* Borde suave */
+        color: #ffffff; /* Texto blanco */
+        border-radius: 8px; /* Bordes redondeados */
+        padding: 18px; /* Altura más grande */
+        font-size: 1.1rem; /* Texto más grande */
+        transition: border-color 0.3s ease;
+    }
+
+        .form-floating input:focus {
+            border-color: #0079bf; /* Borde azul al enfocar */
+            box-shadow: 0 0 12px rgba(0, 121, 191, 0.5); /* Resaltado más visible */
+        }
+
+    .form-floating label {
+        color: #b3b3b3; /* Etiquetas en gris claro */
+        font-size: 1.1rem; /* Etiqueta más grande */
+        transition: color 0.3s ease;
+    }
+
+    .form-floating input:focus + label {
+        color: #ffffff; /* Etiqueta blanca al enfocar */
+    }
+
+/* Validación de errores */
+.text-danger {
+    font-size: 1rem; /* Mensajes de error más grandes */
+    margin-top: 5px;
+    color: #ff4d4d; /* Rojo vibrante para errores */
+}
+
+/* Checkbox "Recordarme" */
+.form-check-input {
+    background-color: #3a3a3a; /* Fondo oscuro */
+    border: 1px solid #555;
+    margin-top: 6px;
+    width: 20px; /* Checkbox más grande */
+    height: 20px;
+}
+
+    .form-check-input:checked {
+        background-color: #0079bf; /* Azul al marcar */
+        border-color: #0079bf;
+    }
+
+.form-check-label {
+    color: #e0e0e0; /* Texto claro */
+    font-size: 1rem; /* Texto más grande */
+    margin-left: 10px; /* Espaciado entre checkbox y etiqueta */
+}
+
+/* Botón de inicio de sesión */
+.btn-primary {
+    background: linear-gradient(90deg, #0079bf, #005f99); /* Degradado azul */
+    color: white;
+    border: none;
+    padding: 15px; /* Altura más grande */
+    border-radius: 8px;
+    font-size: 1.2rem; /* Texto más grande */
+    font-weight: bold;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px); /* Efecto de elevación */
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+    }
+
+/* Iconos SVG */
+svg {
+    display: none;
+}

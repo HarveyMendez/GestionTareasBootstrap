@@ -1,0 +1,89 @@
+﻿/* Estilos generales */
+/*body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0;
+    padding:0 !important;
+}*/
+
+/* Estilos personalizados para el navbar oscuro */
+/*.navbar-dark-custom {
+    background-color: #121212;*/ /* Negro profundo */
+    /*border-bottom: 1px solid #2c2c2c;*/ /* Borde inferior sutil */
+/*}
+
+.navbar-brand {
+    color: #ffffff !important;*/ /* Texto blanco para el logo */
+    /*font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.navbar-nav .nav-link {
+    color: #e0e0e0 !important;*/ /* Texto gris claro para los enlaces */
+    /*transition: color 0.3s ease;*/ /* Transición suave al pasar el mouse */
+/*}
+
+    .navbar-nav .nav-link:hover {
+        color: #ffffff !important;*/ /* Texto blanco al pasar el mouse */
+    /*}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);*/ /* Borde del botón de hamburguesa */
+/*}
+
+body {
+    background-color: #1e1e1e;*/ /* Fondo oscuro para todo el cuerpo */
+    /*color: #e0e0e0;*/ /* Texto gris claro */
+/*}
+
+.container {
+    background-color: #2c2c2c;*/ /* Fondo ligeramente más claro para el contenido */
+    /*border-radius: 8px;*/ /* Bordes redondeados */
+    /*padding: 0;
+    margin-top: 0;
+}*/
+
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0 !important;
+}
+
+/* Estilos personalizados para el navbar oscuro */
+.navbar-dark-custom {
+    background-color: #121212; /* Negro profundo */
+    border-bottom: 1px solid #2c2c2c; /* Borde inferior sutil */
+}
+
+.navbar-brand {
+    color: #ffffff !important; /* Texto blanco para el logo */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.navbar-nav .nav-link {
+    color: #e0e0e0 !important; /* Texto gris claro para los enlaces */
+    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ffffff !important; /* Texto blanco al pasar el mouse */
+    }
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3); /* Borde del botón de hamburguesa */
+}
+
+body {
+    background-color: #1e1e1e; /* Fondo oscuro para todo el cuerpo */
+    color: #e0e0e0; /* Texto gris claro */
+}
+

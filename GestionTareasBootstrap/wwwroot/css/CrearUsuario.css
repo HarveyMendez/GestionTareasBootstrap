@@ -1,0 +1,92 @@
+﻿/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* Negro mate */
+    color: #ffffff; /* Texto blanco */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra mejorada */
+    background-color: #2a2a2a; /* Fondo oscuro para el modal */
+    border: none; /* Sin borde predeterminado */
+}
+
+.modal-header {
+    background: linear-gradient(90deg, #0079bf, #005f99); /* Degradado azul */
+    color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 20px;
+    background-color: #2a2a2a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto más claro */
+}
+
+/* Etiquetas dentro del modal */
+.modal-body label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff; /* Letras blancas */
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Campos de entrada */
+.form-control {
+    background-color: #3a3a3a; /* Fondo oscuro */
+    border: 1px solid #555;
+    color: #ffffff; /* Texto blanco */
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: #b3b3b3; /* Color más claro */
+    font-size: 1rem;
+}
+
+/* Pie del modal */
+.modal-footer {
+    background-color: #2a2a2a; /* Fondo oscuro */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+/* Botón "Crear" */
+.modal-footer .btn-primary {
+    background: linear-gradient(90deg, #0079bf, #005f99); /* Degradado azul */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-footer .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
