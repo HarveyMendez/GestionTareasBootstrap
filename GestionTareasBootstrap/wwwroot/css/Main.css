@@ -147,53 +147,53 @@ button {
     .card-header .label {
         font-size: 0.8rem;
         padding: 4px 8px;
-        border-radius: 16px; /* Bordes completamente redondeados */
+        border-radius: 16px;
         font-weight: bold;
-        white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+        white-space: nowrap; 
     }
 
 .priority-label {
-    background: linear-gradient(90deg, #7bc043, #5aa83b); /* Degradado verde por defecto */
-    color: #ffffff; /* Texto blanco */
+    background: linear-gradient(90deg, #7bc043, #5aa83b);
+    color: #ffffff; 
 }
 
 .priority-baja {
     display: inline-block;
-    background: linear-gradient(90deg, #7bc043, #5aa83b); /* Degradado verde */
+    background: linear-gradient(90deg, #7bc043, #5aa83b);
     border-radius: 30px;
 }
 
 .priority-media {
     display: inline-block;
-    background: linear-gradient(90deg, #f2d600, #e0c200); /* Degradado amarillo */
-    color: #000; /* Texto negro para contraste */
+    background: linear-gradient(90deg, #f2d600, #e0c200);
+    color: #000; 
     border-radius: 30px;
 }
 
 .priority-alta {
     display: inline-block;
-    background: linear-gradient(90deg, #eb5a46, #d63a2f); /* Degradado rojo */
-    color: #ffffff; /* Texto blanco */
+    background: linear-gradient(90deg, #eb5a46, #d63a2f); 
+    color: #ffffff; 
     border-radius: 30px;
 }
 
 .card strong {
     font-size: 1.1rem;
-    color: #ffffff; /* Texto blanco */
+    color: #ffffff;
     display: block;
     margin-bottom: 8px;
 }
 
 .card small {
     font-size: 0.9rem;
-    color: #ffffff; /* Gris claro para detalles */
+    color: #ffffff; 
     display: block;
     margin-top: 5px;
     inline-size: fit-content !important;
 }
 
 .card button {
-    background-color: #ff5630; /* Rojo vibrante para eliminar */
+    background-color: #ff5630;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -204,7 +204,7 @@ button {
 }
 
     .card button:hover {
-        background-color: #ff3e1d; /* Rojo más oscuro al pasar el mouse */
+        background-color: #ff3e1d; 
     }
 
 /* Drag and Drop */
